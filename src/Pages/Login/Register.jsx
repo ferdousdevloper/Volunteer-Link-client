@@ -9,6 +9,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import Loader from "../../components/Loader/Loader";
 import Lottie from "lottie-react";
 import LoginAnimation from "../../LoginAnimation.json";
+import axios from "axios";
 
 
 const Register = () => {
@@ -55,17 +56,29 @@ const Register = () => {
 
     return true; // Password is valid
   };
-  const onSubmit = (data) => {
+  const onSubmit = async data => {
     const { email, password, image, name } = data;
-    createUser(email, password).then((result) => {
-        
-      if (result.user) {
-        setLoading(false);
-        navigate(from);
-      }
+    try{
+    const result = await createUser(email, password)
+    
+    await updateUserProfile(name, image)
+
+    const { data } = await axios.post(
+      `${import.meta.env.VITE_API_URL}/jwt`,
+      {
+        email: result?.user?.email,
+      },
+      { withCredentials: true }
+    )
+    console.log(data)
+    navigate(from, { replace: true })
+    toast.success('Signup Successful')
+    
+    
+
       
-      toast.success("Successfully Register");
-      updateUserProfile(name, image).then(()=>{ navigate("/")})
+      
+      
       const user = {email};
         fetch('http://localhost:5000/user', {
             method: 'POST',
@@ -80,9 +93,13 @@ const Register = () => {
         })
       
       
-      //logout()
+      logout()
       
-    });
+    
+  } catch (err) {
+    console.log(err)
+    toast.error(err?.message)
+  }
     
     
   };

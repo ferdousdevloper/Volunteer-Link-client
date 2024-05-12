@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "./../firebase/firebaseConfig";
+import axios from "axios";
 
 
 export const AuthContext = createContext(null);
@@ -56,8 +57,12 @@ const FirebaseAuthProvider = ({ children }) => {
   };
 
   //logout
-  const logout = () => {
+  const logout = async () => {
     setUser(null);
+    const { data } = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
+      withCredentials: true,
+    })
+    console.log(data)
     signOut(auth);
   };
 

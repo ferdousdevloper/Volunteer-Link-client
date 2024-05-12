@@ -9,39 +9,47 @@ import SocialLogin from "./SocialLogin";
 import Loader from "../../components/Loader/Loader";
 import LoginAnimation from "../../LoginAnimation.json";
 import Lottie from "lottie-react";
+import axios from "axios";
 
 const Login = () => {
 
   const [showPassword, setShowPassword] = useState(true);
-  const { signInUser, setLoading, loading } = useAuth();
+  const { user, signInUser, setLoading, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
 
   const {
     register,
-    handleSubmit,
+    //handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    const { email, password } = data;
-
-    signInUser(email, password)
-      .then((result) => {
-        const loggedInUser = result.user;
-        //const user = {email};
-        if (loggedInUser) {
-          setLoading(false);
-          navigate(from);
-
-          toast.success("Logged in successfully");
-        }
-      })
-      .catch((error) => {
-        setLoading(false);
-        toast.error(error.message);
-      });
-  };
+  const handleSignIn = async e => {
+    e.preventDefault()
+    const form = e.target
+    const email = form.email.value
+    const pass = form.password.value
+    console.log({ email, pass })
+    try {
+      //User Login
+      const result = await signInUser(email, pass)
+      console.log(result.user)
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      )
+      console.log(data)
+      navigate(from, { replace: true })
+      toast.success('Signin Successful')
+    } catch (err) {
+      console.log(err)
+      toast.error(err?.message)
+    }
+  }
+  if (user || loading) return
 
   return (
     <div className="md:w-4/6 mx-auto ">
@@ -63,7 +71,7 @@ const Login = () => {
             </div>
           </div>
           <div className="card shrink-0 w-full max-w-sm shadow-2xl rounded-xl border">
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            <form onSubmit={handleSignIn} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
