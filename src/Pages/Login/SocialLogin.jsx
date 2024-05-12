@@ -5,15 +5,34 @@ import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import Loader from "../../components/Loader/Loader";
+import axios from "axios";
 
 const SocialLogin = () => {
 
-  const { googleLogin, githubLogin, setLoading, loading } = useAuth();
+  const { googleLogin, githubLogin, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state || "/";
+ const from = location?.state || "/";
 
-  const handleSocialLogin = (socialProvider) => {
+  const handleSocialLogin = async () => {
+    try{
+      const result = await googleLogin()
+      console.log(result.user);
+      const {data} = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`, {
+          email: result?.user?.email,
+        },
+        {withCredentials: true}
+      )
+      console.log(data);
+      navigate(from);
+      toast.success("Logged in successfully");
+    }
+    catch (err) {
+      console.log(err)
+      toast.error(err?.message)
+    }
+    /*
     socialProvider().then((result) => {
       if (result.user) {
         setLoading(false);
@@ -21,6 +40,7 @@ const SocialLogin = () => {
         toast.success("Logged in successfully");
       }
     });
+    */
   };
   
   return (
