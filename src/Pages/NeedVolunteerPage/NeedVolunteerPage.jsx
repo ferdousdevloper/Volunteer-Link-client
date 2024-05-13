@@ -187,7 +187,7 @@ const NeedVolunteerPage = () => {
                     </td>
                     <td className="font-bold">
                       <div className="text-sm opacity-50">
-                        Category: {i.volunteers_needed}
+                        Volunteers Need: {i.volunteers_needed}
                       </div>
                     </td>
                     <td>

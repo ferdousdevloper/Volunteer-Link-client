@@ -3,20 +3,26 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import empty1 from "../../../public/empty1.png"
-import axios from "axios";
+//import axios from "axios";
+import { Link } from "react-router-dom";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const VolunteerRequest = () => {
-
+  const axiosSecure = useAxiosSecure()
   const [item, setItem] = useState([]);
   const [volunteerRequest, setVolunteerRequest] = useState(item);
 
 useEffect(()=>{
-  const getData = async() =>{
-    const {data} = await axios(`${import.meta.env.VITE_API_URL}/beVolunteer`)
-    setItem(data)
-  }
+  
   getData()
-}, [])
+}, [volunteerRequest])
+
+const getData = async() =>{
+  const {data} = await axiosSecure(`/beVolunteer`)
+  
+  setItem(data)
+}
 
 /*
   console.log(item);
@@ -31,8 +37,7 @@ useEffect(()=>{
 
   
 
-  const handleDelete = (_id) => {
-    console.log(_id);
+  const handleDelete = async _id => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -41,27 +46,27 @@ useEffect(()=>{
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, cancel it!",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        fetch(`${import.meta.env.VITE_API_URL}/beVolunteer/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.deletedCount > 0) {
-              Swal.fire(
-                "Canceled!",
-                "Your request has been canceled.",
-                "success"
-              );
-              const remaining = volunteerRequest.filter((item) => item._id !== _id);
-              setVolunteerRequest(remaining);
-              
-            }
-          });
+        try {
+      
+          const { data } = await axiosSecure.delete(`/beVolunteer/${_id}`)
+          console.log(data)
+          if (data.deletedCount > 0) {
+            Swal.fire("Canceled!", "Your Post has been Canceled.", "success");
+            
+          }
+    
+          //refresh ui
+          getData()
+        } catch (err) {
+          console.log(err.message)
+          toast.error(err.message)
+        }
+        
       }
     });
+    
   };
   return (
     <section className='container px-4 mx-auto pt-12'>
@@ -110,6 +115,18 @@ useEffect(()=>{
                     >
                       Description
                     </th>
+                    <th
+                      scope='col'
+                      className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
+                    >
+                      No of Volunteers
+                    </th>
+                    <th
+                      scope='col'
+                      className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
+                    >
+                      Details
+                    </th>
 
                     <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
                       Edit
@@ -153,6 +170,19 @@ useEffect(()=>{
                       >
                         {i.description.substring(0, 18)}...
                       </td>
+                      <td
+                        title={i.volunteers_needed}
+                        className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'
+                      >
+                        {i.volunteers_needed}
+                      </td>
+                      <td>
+                      <Link to={`/viewDetail/${i._id}`}>
+                        <button className="btn btn-ghost btn-sm bg-green-500 text-white">
+                          View Detail
+                        </button>
+                      </Link>
+                    </td>
                       <td className='px-4 py-4 text-sm whitespace-nowrap'>
                         <div className='flex items-center gap-x-6'>
                           <button
