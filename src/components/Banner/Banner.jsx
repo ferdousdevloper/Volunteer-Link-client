@@ -19,7 +19,7 @@ import bgimg4 from '../../assets/carousel4.jpg'
 
 export default function Banner() {
   return (
-    <div className='container px-6 py-10 mx-auto'>
+    <div className=''>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}

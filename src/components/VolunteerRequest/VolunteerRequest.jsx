@@ -7,16 +7,18 @@ import empty1 from "../../../public/empty1.png"
 import { Link } from "react-router-dom";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import toast from "react-hot-toast";
+import useAuth from "../../Hook/useAuth";
 
 const VolunteerRequest = () => {
   const axiosSecure = useAxiosSecure()
+  const { user } = useAuth();
   const [item, setItem] = useState([]);
-  const [volunteerRequest, setVolunteerRequest] = useState(item);
+  //const [volunteerRequest, setVolunteerRequest] = useState(item);
 
 useEffect(()=>{
   
   getData()
-}, [volunteerRequest])
+}, [user])
 
 const getData = async() =>{
   const {data} = await axiosSecure(`/beVolunteer`)
@@ -70,7 +72,11 @@ const getData = async() =>{
   };
   return (
     <section className='container px-4 mx-auto pt-12'>
-    <div className="flex items-center gap-x-3">
+    <div
+    data-aos="zoom-in"
+    data-aos-duration="500"
+    data-aos-delay="900"
+    className="flex items-center gap-x-3">
       <h2 className="text-lg font-medium ">My Volunteer Request Post</h2>
 
       <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
@@ -78,10 +84,18 @@ const getData = async() =>{
       </span>
     </div>
 
-    <div className='flex flex-col mt-6'>
+    <div
+    data-aos="zoom-in"
+    data-aos-duration="500"
+    data-aos-delay="1100"
+    className='flex flex-col mt-6'>
         <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
-            <div className='overflow-hidden border border-gray-200  md:rounded-lg'>
+            <div className='relative overflow-hidden border border-gray-200  md:rounded-lg'>
+            <div
+          className="absolute -z-10 inset-0 bg-cover bg-center blur-[2px] "
+          style={{backgroundImage: "url('https://i.ibb.co/WWm7kb4/as.jpg')"}}
+        ></div>
               <table className='min-w-full divide-y divide-gray-200'>
                 <thead className=''>
                   <tr>
@@ -121,12 +135,7 @@ const getData = async() =>{
                     >
                       No of Volunteers
                     </th>
-                    <th
-                      scope='col'
-                      className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'
-                    >
-                      Details
-                    </th>
+                    
 
                     <th className='px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500'>
                       Edit
@@ -176,13 +185,7 @@ const getData = async() =>{
                       >
                         {i.volunteers_needed}
                       </td>
-                      <td>
-                      <Link to={`/viewDetail/${i._id}`}>
-                        <button className="btn btn-ghost btn-sm bg-green-500 text-white">
-                          View Detail
-                        </button>
-                      </Link>
-                    </td>
+                      
                       <td className='px-4 py-4 text-sm whitespace-nowrap'>
                         <div className='flex items-center gap-x-6'>
                           <button

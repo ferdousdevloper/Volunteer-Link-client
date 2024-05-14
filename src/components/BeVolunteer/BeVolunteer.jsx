@@ -1,9 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import useAuth from "../../Hook/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 //import { useState } from "react";
 
 const BeVolunteer = () => {
+  const navigate = useNavigate()
   const singleData = useLoaderData();
   const { user } = useAuth();
   //const [item, setItem] = useState(singleData);
@@ -103,18 +105,34 @@ const BeVolunteer = () => {
       .then((data) => {
         console.log(data);
       });
+      navigate('/myPost')
   };
 
   return (
     <div>
-      <section className="bg-white dark:bg-gray-900">
+      <Helmet>
+        <title>Volunteer Link | BE VOLUNTEER</title>
+      </Helmet>
+      <section className="relative">
+      <div
+          className="absolute -z-10 inset-0 bg-cover bg-center blur-[2px]  brightness-50"
+          style={{backgroundImage: "url('https://i.ibb.co/xjk87mc/ass.jpg')"}}
+        ></div>
         <div className="flex justify-center min-h-screen container mx-auto">
-          <div className="hidden bg-cover lg:block lg:w-2/5 mx-auto my-auto">
+          <div
+          data-aos="zoom-in"
+          data-aos-duration="500"
+          data-aos-delay="500"
+          className="hidden bg-cover lg:block lg:w-2/5 mx-auto my-auto">
             <img src={thumbnail} alt="" />
           </div>
 
           <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
-            <div className="w-full">
+            <div
+            data-aos="fade-up"
+            data-aos-duration="500"
+            data-aos-delay="500"
+            className="w-full">
               <h1 className="text-2xl font-semibold tracking-wider text-gray-800 capitalize dark:text-white">
                 Submit a request to volunteer
               </h1>
@@ -130,7 +148,9 @@ const BeVolunteer = () => {
                 onSubmit={handleAddBeVolunteer}
                 className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2"
               >
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="600">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Post Title
                   </label>
@@ -144,7 +164,9 @@ const BeVolunteer = () => {
                   />
                 </div>
 
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="700">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Category
                   </label>
@@ -158,7 +180,9 @@ const BeVolunteer = () => {
                   />
                 </div>
 
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="800">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Location
                   </label>
@@ -172,7 +196,9 @@ const BeVolunteer = () => {
                   />
                 </div>
 
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="900">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Volunteers Needed
                   </label>
@@ -185,7 +211,9 @@ const BeVolunteer = () => {
                   />
                 </div>
 
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1000">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Deadline
                   </label>
@@ -197,7 +225,9 @@ const BeVolunteer = () => {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1100">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Thumbnail
                   </label>
@@ -209,7 +239,9 @@ const BeVolunteer = () => {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1200">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Description
                   </label>
@@ -223,7 +255,9 @@ const BeVolunteer = () => {
                   />
                 </div>
 
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1300">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Organizer Name
                   </label>
@@ -235,7 +269,9 @@ const BeVolunteer = () => {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1400">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Organizer Email
                   </label>
@@ -247,7 +283,9 @@ const BeVolunteer = () => {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1500">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Your Name
                   </label>
@@ -259,7 +297,9 @@ const BeVolunteer = () => {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1600">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Your Email
                   </label>
@@ -271,7 +311,9 @@ const BeVolunteer = () => {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1700">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Suggestion
                   </label>
@@ -283,7 +325,9 @@ const BeVolunteer = () => {
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-                <div>
+                <div data-aos="fade-up"
+               data-aos-duration="500"
+               data-aos-delay="1800">
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Status
                   </label>
@@ -297,6 +341,9 @@ const BeVolunteer = () => {
                 </div>
 
                 <input
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="1900"
                   className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                   type="submit"
                   value="Request"

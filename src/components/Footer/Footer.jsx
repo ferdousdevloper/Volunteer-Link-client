@@ -1,21 +1,54 @@
+import { Link } from "react-router-dom";
+import { Typewriter } from "react-simple-typewriter";
+import logo from "../../../public/logo.png"
+
 const Footer = () => {
   return (
     <div>
-      <footer className="">
+      <footer className="relative">
+      <div
+          className="absolute -z-10 inset-0 bg-cover bg-center"
+          style={{backgroundImage: "url('https://i.ibb.co/8sZWcVY/footer-background-2.jpg')"}}
+        ></div>
         <div className="container px-6 py-8 mx-auto">
           <div className="flex flex-col items-center text-center">
-            <a href="#">
-              <img
-                className="w-auto h-7"
-                src="https://merakiui.com/images/full-logo.svg"
-                alt=""
-              />
-            </a>
+          <Link
+            to="/"
 
-            <div className="flex flex-wrap justify-center mt-6 -mx-4">
+            data-aos="zoom-in"
+            data-aos-duration="500"
+            data-aos-delay="500"
+            className=" text-center font-bold flex flex-col items-center"
+          >
+            <img className="md:w-[200px] w-[80px]" src={logo} alt="" />
+            <p
+            data-aos="zoom-in"
+            data-aos-duration="500"
+            data-aos-delay="600"
+            className="text-orange-500 text-3xl">
+              Volunteer <span className="text-purple-800 stroke-cyan-500">
+                <Typewriter
+            words={['Link']}
+            loop={20}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+            className='ml-10 '
+            
+          />
+                </span>
+            </p>
+          </Link>
+
+            <div className="flex flex-wrap justify-center mt-6 -mx-4 text-white">
               <a
+              data-aos="zoom-in"
+              data-aos-duration="500"
+              data-aos-delay="1000"
                 href="#"
-                className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
+                className="mx-4 text-sm text-white transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
                 aria-label="Reddit"
               >
                 {" "}
@@ -23,8 +56,23 @@ const Footer = () => {
               </a>
 
               <a
+              data-aos="zoom-in"
+              data-aos-duration="500"
+              data-aos-delay="1100"
                 href="#"
-                className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
+                className="mx-4 text-sm  transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
+                aria-label="Reddit"
+              >
+                {" "}
+                Volunteers{" "}
+              </a>
+
+              <a
+              data-aos="zoom-in"
+              data-aos-duration="500"
+              data-aos-delay="1200"
+                href="#"
+                className="mx-4 text-sm  transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
                 aria-label="Reddit"
               >
                 {" "}
@@ -32,39 +80,26 @@ const Footer = () => {
               </a>
 
               <a
+              data-aos="zoom-in"
+              data-aos-duration="500"
+              data-aos-delay="1300"
                 href="#"
-                className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
+                className="mx-4 text-sm  transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
                 aria-label="Reddit"
               >
                 {" "}
                 Teams{" "}
-              </a>
-
-              <a
-                href="#"
-                className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
-                aria-label="Reddit"
-              >
-                {" "}
-                Privacy{" "}
-              </a>
-
-              <a
-                href="#"
-                className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500  dark:hover:text-blue-400"
-                aria-label="Reddit"
-              >
-                {" "}
-                Cookies{" "}
               </a>
             </div>
           </div>
 
           <hr className="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
 
-          <div className="flex flex-col items-center sm:flex-row sm:justify-between">
+          <div 
+          
+          className="flex flex-col items-center sm:flex-row sm:justify-between">
             <p className="text-sm text-gray-500 ">
-              © Copyright 2021. All Rights Reserved.
+              © Copyright 2024. All Rights Reserved. - Ferdous
             </p>
 
             <div className="flex -mx-2">

@@ -7,6 +7,7 @@ import empty1 from "../../../public/empty1.png";
 //import axios from "axios";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 const MyPost = () => {
   const axiosSecure = useAxiosSecure()
@@ -74,8 +75,15 @@ const MyPost = () => {
   }
 
   return (
-    <section className="container px-4 mx-auto pt-12">
-      <div className="flex items-center gap-x-3">
+    <section className="container px-4 mx-auto py-12">
+      <Helmet>
+        <title>Volunteer Link | MANAGE MY POST</title>
+      </Helmet>
+      <div 
+      data-aos="zoom-in"
+      data-aos-duration="500"
+      data-aos-delay="500"
+      className="flex items-center gap-x-3">
         <h2 className="text-lg font-medium ">My Posted Jobs</h2>
 
         <span className="px-3 py-1 text-xs text-blue-600 bg-blue-100 rounded-full ">
@@ -84,10 +92,21 @@ const MyPost = () => {
       </div>
 
       <div className="flex flex-col mt-6">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+        <div
+        data-aos="zoom-in"
+        data-aos-duration="500"
+        data-aos-delay="700"
+        className="relative  overflow-x-auto sm:-mx-6 lg:-mx-8 rounded-2xl">
+        <div
+          className="absolute -z-10 inset-0 bg-cover bg-center blur-[2px] "
+          style={{backgroundImage: "url('https://i.ibb.co/WWm7kb4/as.jpg')"}}
+        ></div>
+          
+          <div className="inline-block min-w-full align-middle ">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
-              <table className="min-w-full divide-y divide-gray-200">
+              <table
+              
+              className="min-w-full divide-y divide-gray-200">
                 <thead className="">
                   <tr>
                     <th
@@ -137,6 +156,7 @@ const MyPost = () => {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 ">
+                  
                   {item.length === 0 ? (
                     <img className="h-80 mx-auto" src={empty1} />
                   ) : (

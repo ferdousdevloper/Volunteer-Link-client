@@ -1,26 +1,33 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../Hook/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../Hook/useAxiosSecure";
 
 const UpdatePost = () => {
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const volunteer = useLoaderData();
   const { user } = useAuth();
 
-  const { _id,  post_title,
+  const {
+    _id,
+    post_title,
     category,
     location,
     volunteers_needed,
     thumbnail,
     deadline,
-    description } = volunteer || {};
+    description,
+  } = volunteer || {};
 
-    const [startDate, setStartDate] = useState(new Date(deadline)|| new Date());
+  const [startDate, setStartDate] = useState(new Date(deadline) || new Date());
 
-  const handleUpdateProduct = (event) => {
+  const handleUpdateProduct = async (event) => {
     event.preventDefault();
     const form = event.target;
 
@@ -49,6 +56,27 @@ const UpdatePost = () => {
     console.log(updatedPostItem);
 
     //send data to the server
+    try {
+      const { data } = await axiosSecure.put(
+        `/volunteer/${_id}`,
+        updatedPostItem
+      );
+      console.log(data);
+
+      if (data.modifiedCount > 0) {
+        Swal.fire({
+          title: "Updated Craft Item Successfully!",
+          icon: "success",
+        });
+      }
+
+      navigate("/myPost");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+    }
+
+    /*
     fetch(`${import.meta.env.VITE_API_URL}/volunteer/${_id}`, {
       method: "PUT",
       headers: {
@@ -66,13 +94,18 @@ const UpdatePost = () => {
           });
         }
       });
+      */
   };
   return (
     <div className="md:container mx-auto py-20 ">
       <Helmet>
         <title>WOOD | ADD CRAFT ITEM</title>
       </Helmet>
-      <div className="shadow-lg p-5 border rounded-3xl">
+      <div
+      data-aos="zoom-in"
+      data-aos-duration="500"
+      data-aos-delay="500"
+      className="shadow-lg p-5 border rounded-3xl">
         {/* Heading */}
         <div className="mt-5 mb-8">
           <p className="text-center text-3xl font-semibold">
@@ -83,9 +116,11 @@ const UpdatePost = () => {
               <span className="text-[#FF497C]">
                 {/* {update ? "Update " : "Add "} */}
               </span>
-              <h1 className="font-gilda md:text-5xl text-2xl  font-bold md:font-extrabold  mb-6">
-                UPDATE YOUR POST
+              <h1 className="md:text-5xl text-2xl text-center  font-bold md:font-extrabold mb-6 mx-auto">
+                Update Your Post
               </h1>
+
+              <hr className=" my-10 border border-dashed container mx-auto bg-gray-500" />
             </span>
           </p>
         </div>
@@ -97,7 +132,7 @@ const UpdatePost = () => {
                 Post Title
               </label>
               <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Post Title"
                 id="name"
@@ -111,7 +146,7 @@ const UpdatePost = () => {
               <select
                 name="category"
                 id="category"
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Select Category"
                 defaultValue={category}
@@ -133,7 +168,7 @@ const UpdatePost = () => {
                 Location
               </label>
               <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Enter Location"
                 id="Location"
@@ -144,7 +179,7 @@ const UpdatePost = () => {
                 No. of volunteers needed
               </label>
               <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Type No. of volunteers needed"
                 id="noOfVolunteers"
@@ -158,17 +193,16 @@ const UpdatePost = () => {
                 Select Deadline
               </label>
               <DatePicker
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 selected={startDate}
-                onChange={date => setStartDate(date)}
-                
+                onChange={(date) => setStartDate(date)}
               />
 
               <label className="block mb-2 mt-4 " htmlFor="description">
                 Description
               </label>
               <textarea
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Description"
                 id="description"
@@ -181,7 +215,7 @@ const UpdatePost = () => {
               </label>
               <input
                 disabled
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C] "
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)] "
                 type="email"
                 placeholder="Organizer Email"
                 id="email"
@@ -193,7 +227,7 @@ const UpdatePost = () => {
               </label>
               <input
                 disabled
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Organizer Name"
                 id="userName"
@@ -206,7 +240,7 @@ const UpdatePost = () => {
             Thumbnail
           </label>
           <input
-            className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+            className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
             type="text"
             placeholder="Enter Thumbnail URL"
             id="thumbnail"
@@ -216,7 +250,7 @@ const UpdatePost = () => {
           />
 
           <input
-            className="px-4 w-full py-2 mt-4 rounded hover:bg-lime-600  bg-lime-400 duration-200 text-white cursor-pointer font-semibold"
+            className="px-4 w-full py-2 mt-4 rounded-3xl hover:bg-purple-950  bg-purple-800 duration-200 text-white cursor-pointer font-semibold"
             type="submit"
             value="Update Post"
           />

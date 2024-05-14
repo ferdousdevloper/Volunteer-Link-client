@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../../public/logo.png";
 import { useEffect, useState } from "react";
 import useAuth from "../../Hook/useAuth";
+import { Typewriter } from "react-simple-typewriter";
 
 const Navbar = () => {
   const [theme, setTheme] = useState("light");
@@ -30,7 +31,7 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-lime-500 font-bold border border-lime-500 mr-3 scale-105"
+              ? "text-orange-500 font-bold border border-purple-800 mr-3 scale-105"
               : "font-bold mr-3"
           }
         >
@@ -42,7 +43,7 @@ const Navbar = () => {
           to="/needVolunteer"
           className={({ isActive }) =>
             isActive
-              ? "text-lime-500 font-bold border border-lime-500 mr-3 scale-105"
+              ? "text-orange-500 font-bold border border-purple-800 mr-3 scale-105"
               : "font-bold mr-3"
           }
         >
@@ -51,15 +52,15 @@ const Navbar = () => {
       </li>
       {user &&(
         <li>
-        <details className="dropdown font-bold mr-3">
+        <details className="dropdown font-bold mr-3 ">
           <summary className="m-1">My Profile</summary>
-          <ul className="p-2 shadow menu dropdown-content z-[50] bg-base-100 rounded-box w-52 ">
+          <ul className="p-2 shadow menu dropdown-content z-[50]  rounded-box w-52  bg-black">
             <li>
               <NavLink
                 to="/addVolunteer"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-lime-500 font-bold border border-lime-500 mr-3 scale-105"
+                    ? "text-orange-500 font-bold border border-purple-800 mr-3 scale-105"
                     : "font-bold mr-3"
                 }
               >
@@ -70,7 +71,7 @@ const Navbar = () => {
               <NavLink to="/myPost"
               className={({ isActive }) =>
                 isActive
-                  ? "text-lime-500 font-bold border border-lime-500 mr-3 scale-105"
+                  ? "text-orange-500 font-bold border border-purple-800 mr-3 scale-105"
                   : "font-bold mr-3"
               }>
                 Manage My Post</NavLink>
@@ -83,10 +84,14 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="shadow-lg navbar z-[60]   md:px-16">
-      <div className="navbar">
+    <div className=" navbar z-[60]   md:px-16 text-white">
+      <div
+          className="absolute max-h-32 -z-10 inset-0 bg-cover bg-center blur-[2px] brightness-50"
+          style={{backgroundImage: "url('https://t3.ftcdn.net/jpg/06/04/17/18/360_F_604171878_er6QBeKSWJTu5JQr6GbH6G2aWa7kHOh7.jpg')"}}
+        ></div>
+      <div className="navbar max-h-32">
         <div className="navbar-start">
-          <div className="dropdown z-[99]">
+          <div className="dropdown z-[99] ">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +110,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 bg-black"
             >
               {navLink}
             </ul>
@@ -116,7 +121,19 @@ const Navbar = () => {
           >
             <img className="md:w-[150px] w-[80px]" src={logo} alt="" />
             <p className="text-orange-500">
-              Volunteer <span className="text-purple-800">Link</span>
+              Volunteer <span className="text-purple-800 stroke-cyan-500">
+                <Typewriter
+            words={['Link']}
+            loop={20}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+            className='ml-10 '
+            
+          />
+                </span>
             </p>
           </Link>
         </div>
@@ -178,7 +195,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content mt-3 z-[99] px-2 py-10 shadow-4xl shadow bg-white rounded-box md:w-64 border   "
+                className="menu dropdown-content mt-3 z-[99] px-2 py-10 shadow-4xl shadow bg-black rounded-box w-64 border   "
               >
                 <img
                   src={
@@ -186,7 +203,7 @@ const Navbar = () => {
                     "https://i.ibb.co/vY5bFQR/2151033973-min.jpg"
                   }
                   alt=""
-                  className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square mb-6"
+                  className="w-32 h-32 mx-auto rounded-full  aspect-square mb-6"
                 />
                 <li>
                   <p className=" btn mb-3">

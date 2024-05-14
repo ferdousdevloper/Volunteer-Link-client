@@ -52,13 +52,13 @@ const Login = () => {
   if (user || loading) return
 
   return (
-    <div className="md:w-4/6 mx-auto ">
+    <div className="md:w-4/6 mx-auto">
       <Helmet>
-        <title>JWD | LOGIN</title>
+        <title>Volunteer Link | LOGIN</title>
       </Helmet>
       {loading && <Loader></Loader>}
-      <h1 className="text-5xl font-bold text-center pt-10 md:pt-20">Login now!</h1>
-      <div className="hero min-h-screen md:pt-20 ">
+      <h1 className="text-5xl font-bold text-center pt-10 md:pt-10">Login now!</h1>
+      <div className="hero min-h-screen ">
         <div className="hero-content flex-col lg:flex-row">
           <div className="text-center">
             <div>

@@ -59,11 +59,15 @@ const AddVolunteer = () => {
   };
 
   return (
-    <div className="md:container mx-auto py-20 ">
+    <div 
+    data-aos="zoom-in"
+        data-aos-duration="500"
+        data-aos-delay="500"
+    className="md:container mx-auto py-20 ">
       <Helmet>
-        <title>WOOD | ADD CRAFT ITEM</title>
+        <title>Volunteer Link | ADD VOLUNTEER POST</title>
       </Helmet>
-      <div className="shadow-lg p-5 border rounded-3xl">
+      <div className="shadow-2xl p-5 border rounded-3xl">
         {/* Heading */}
         <div className="mt-5 mb-8">
           <p className="text-center text-3xl font-semibold">
@@ -71,12 +75,14 @@ const AddVolunteer = () => {
               <i className="bx bxs-alarm-add"></i>
             </span>
             <span className="">
-              <span className="text-[#FF497C]">
+              <span className="text-[rgb(68,65,255)]">
                 {/* {update ? "Update " : "Add "} */}
               </span>
-              <h1 className="font-gilda md:text-5xl text-2xl  font-bold md:font-extrabold  mb-6">
-                ADD YOUR PRODUCT
-              </h1>
+              <h1 className="md:text-5xl text-2xl text-center  font-bold md:font-extrabold mb-6 mx-auto">
+        Add Volunteer
+      </h1>
+      
+      <hr className=" my-10 border border-dashed container mx-auto bg-gray-500" />
             </span>
           </p>
         </div>
@@ -88,7 +94,7 @@ const AddVolunteer = () => {
                 Post Title
               </label>
               <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Post Title"
                 id="name"
@@ -104,7 +110,7 @@ const AddVolunteer = () => {
               <select
                 name="category"
                 id="category"
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Select Category"
               >
@@ -128,7 +134,7 @@ const AddVolunteer = () => {
                 Location
               </label>
               <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Enter Location"
                 id="Location"
@@ -141,7 +147,7 @@ const AddVolunteer = () => {
                 No. of volunteers needed
               </label>
               <input
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Type No. of volunteers needed"
                 id="noOfVolunteers"
@@ -154,7 +160,7 @@ const AddVolunteer = () => {
                 Select Deadline
               </label>
               <DatePicker
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
               />
@@ -166,7 +172,7 @@ const AddVolunteer = () => {
                 Description
               </label>
               <textarea
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Description"
                 id="description"
@@ -181,7 +187,7 @@ const AddVolunteer = () => {
               </label>
               <input
                 disabled
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C] "
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)] "
                 type="email"
                 placeholder="Organizer Email"
                 id="email"
@@ -196,7 +202,7 @@ const AddVolunteer = () => {
               </label>
               <input
                 disabled
-                className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+                className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
                 type="text"
                 placeholder="Organizer Name"
                 id="userName"
@@ -209,7 +215,7 @@ const AddVolunteer = () => {
             Thumbnail
           </label>
           <input
-            className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
+            className="w-full p-2 border rounded-md focus:outline-[rgb(68,65,255)]"
             type="text"
             placeholder="Enter Thumbnail URL"
             id="thumbnail"
@@ -218,7 +224,7 @@ const AddVolunteer = () => {
           />
 
           <input
-            className="px-4 w-full py-2 mt-4 rounded hover:bg-lime-600  bg-lime-400 duration-200 text-white cursor-pointer font-semibold"
+            className="px-4 w-full py-2 mt-4 rounded-3xl hover:bg-purple-950  bg-purple-800 duration-200 text-white cursor-pointer font-semibold"
             type="submit"
             value="Add Post"
           />

@@ -16,6 +16,11 @@ import MyPost from "./Pages/MyPost/MyPost";
 import UpdatePost from "./components/UpdatePost/UpdatePost";
 import BeVolunteer from "./components/BeVolunteer/BeVolunteer";
 import PrivateDetails from "./PrivateRoute/PrivateDetails";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init()
+//import useAxiosSecure from "./Hook/useAxiosSecure";
+
 
 const router = createBrowserRouter([
   {
@@ -42,11 +47,27 @@ const router = createBrowserRouter([
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/volunteer/${params._id}`),
       },
+
+      /**
+      loader: async ({ params }) => {
+        try {
+        const response = await axiosSecure.get(`/volunteer/${params._id}`);
+        return response.data;
+        } catch (error) {
+        console.error('Error fetching job details:', error);
+        throw error;
+        }
+        },
+      } 
+      
+       */
       {
         path: "/beVolunteer/:_id",
-        element: <PrivateDetails>
-          <BeVolunteer></BeVolunteer>
-        </PrivateDetails>,
+        element: (
+          <PrivateDetails>
+            <BeVolunteer></BeVolunteer>
+          </PrivateDetails>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/volunteer/${params._id}`),
       },
@@ -66,18 +87,22 @@ const router = createBrowserRouter([
           </PrivateDetails>
         ),
       },
-      
+
       {
         path: "/myPost",
-        element: <PrivateDetails>
-          <MyPost></MyPost>
-        </PrivateDetails>,
+        element: (
+          <PrivateDetails>
+            <MyPost></MyPost>
+          </PrivateDetails>
+        ),
       },
       {
         path: "/updatePost/:_id",
-        element: <PrivateDetails>
-          <UpdatePost></UpdatePost>
-        </PrivateDetails>,
+        element: (
+          <PrivateDetails>
+            <UpdatePost></UpdatePost>
+          </PrivateDetails>
+        ),
         loader: ({ params }) =>
           fetch(`${import.meta.env.VITE_API_URL}/volunteer/${params._id}`),
       },

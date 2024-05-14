@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { MdOutlineGridView } from "react-icons/md";
 import { MdOutlineViewHeadline } from "react-icons/md";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const NeedVolunteerPage = () => {
   const [item, setItem] = useState([]);
@@ -13,13 +14,15 @@ const NeedVolunteerPage = () => {
   const [isLayoutOne, setIsLayoutOne] = useState(true);
   //const needVolunteerCards = useLoaderData();
 
-  useEffect(()=>{
-    const getData = async() =>{
-      const {data} = await axios(`${import.meta.env.VITE_API_URL}/volunteer?search=${search}`)
-      setItem(data)
-    }
-    getData()
-  },[search])
+  useEffect(() => {
+    const getData = async () => {
+      const { data } = await axios(
+        `${import.meta.env.VITE_API_URL}/volunteer?search=${search}`
+      );
+      setItem(data);
+    };
+    getData();
+  }, [search]);
 
   /*
   useEffect(() => {
@@ -34,11 +37,8 @@ const NeedVolunteerPage = () => {
     e.preventDefault();
 
     setSearch(searchText);
-    setSearchText("")
+    setSearchText("");
   };
-
- 
-
 
   console.log(search);
   console.log(item);
@@ -49,16 +49,37 @@ const NeedVolunteerPage = () => {
   };
   console.log(isLayoutOne);
   return (
-    <div className="text-center mb-10 container mx-auto">
-      <h1>NeedVolunteerPage{item.length}</h1>
-      <h1 className="md:text-5xl text-2xl  font-bold md:font-extrabold mt-10 mb-6 mx-auto">
+    <div className="text-center mb-10 md:container md:mx-auto mx-5">
+      <Helmet>
+        <title>Volunteer Link | Need Volunteer</title>
+      </Helmet>
+      <h1
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-delay="500"
+        className="md:text-5xl text-2xl  font-bold md:font-extrabold mt-10 mb-6 mx-auto"
+      >
         Need Volunteer
       </h1>
-      <p className="max-w-[600px] mx-auto">
+      <p
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-delay="700"
+        className="max-w-[600px] mx-auto"
+      >
         Explore diverse volunteer opportunities on our circular page. Join us in
         making a difference in various causes today.
       </p>
+      <hr
+        data-aos="zoom-in"
+        data-aos-duration="500"
+        data-aos-delay="800"
+        className=" my-10 border border-dashed container mx-auto bg-gray-500"
+      />
       <form
+        data-aos="fade-up"
+        data-aos-duration="500"
+        data-aos-delay="1000"
         onSubmit={handleSearch}
         className="flex gap-1 items-center justify-center mx-auto my-10"
       >
@@ -88,7 +109,12 @@ const NeedVolunteerPage = () => {
           Search
         </button>
       </form>
-      <div className="flex items-center gap-4 justify-end mb-8 mr-10">
+      <div
+        data-aos="zoom-in"
+        data-aos-duration="500"
+        data-aos-delay="1100"
+        className="flex items-center gap-4 justify-end mb-8 mr-10"
+      >
         <p className="font-bold">View Grid</p>
         <MdOutlineGridView className="text-2xl text-blue-500" />
         <input
@@ -104,8 +130,22 @@ const NeedVolunteerPage = () => {
           {
             // eslint-disable-next-line react/no-unknown-property
             item.map((i) => (
-              <div key={i._id} i={i}>
-                <div className=" overflow-hidden  rounded-lg shadow-lg border ">
+              <div
+                data-aos="fade-up"
+                data-aos-duration="500"
+                data-aos-delay="500"
+                key={i._id}
+                i={i}
+                className="relative text-white border-2 border-purple-800 rounded-3xl"
+              >
+                <div
+                  className="absolute  -z-10 inset-0 bg-cover bg-center blur-[2px] rounded-3xl brightness-50"
+                  style={{
+                    backgroundImage:
+                      "url('https://unblast.com/wp-content/uploads/2021/01/Space-Background-Images.jpg')",
+                  }}
+                ></div>
+                <div className=" overflow-hidden  rounded-lg shadow-lg">
                   <div className="px-4 py-2">
                     <h1 className="text-xl font-bold uppercase">
                       {i.post_title}
@@ -124,10 +164,10 @@ const NeedVolunteerPage = () => {
                   <img
                     className="object-cover w-full h-48 mt-2"
                     src={i.thumbnail}
-                    alt="NIKE AIR"
+                    alt=""
                   />
 
-                  <div className="flex items-center justify-between px-4 py-2 bg-gray-900">
+                  <div className="flex flex-col md:flex-row gap-4 md:items-end items-center md:justify-between px-4 py-2 bg-gray-900 rounded-3xl">
                     <div className=" text-gray-700 badge badge-error badge-outline">
                       <SlCalender />
 
@@ -148,7 +188,11 @@ const NeedVolunteerPage = () => {
           }
         </div>
       ) : (
-        <div className="overflow-x-auto border rounded-2xl shadow-2xl">
+        <div 
+        data-aos="zoom-in"
+       data-aos-duration="500"
+       data-aos-delay="700"
+        className="overflow-x-auto border rounded-2xl shadow-2xl">
           <table className="table ">
             {/* head */}
             <thead>
@@ -165,7 +209,7 @@ const NeedVolunteerPage = () => {
               {
                 // eslint-disable-next-line react/no-unknown-property
                 item.map((i) => (
-                  <tr key={i._id} i={i} className="shadow-2xl">
+                  <tr key={i._id} i={i} className="shadow-2xl hover:scale-[101%] ease-in duration-300">
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
@@ -192,7 +236,7 @@ const NeedVolunteerPage = () => {
                     </td>
                     <td>
                       <span className="border border-red-700 text-red-700 px-3 py-1 rounded-3xl font-bold">
-                      {new Date(i.deadline).toLocaleDateString()}
+                        {new Date(i.deadline).toLocaleDateString()}
                       </span>
                     </td>
                     <th>
@@ -212,8 +256,9 @@ const NeedVolunteerPage = () => {
                 <th>Thumbnail</th>
                 <th>Post Title</th>
                 <th>Category</th>
-                <th>Deadline</th>
                 <th>Volunteers Need</th>
+                <th>Deadline</th>
+                
                 <th></th>
               </tr>
             </tfoot>
