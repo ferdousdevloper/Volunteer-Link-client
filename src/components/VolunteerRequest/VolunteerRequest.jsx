@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import empty1 from "../../../public/empty1.png"
 //import axios from "axios";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import useAxiosSecure from "../../Hook/useAxiosSecure";
 import toast from "react-hot-toast";
 import useAuth from "../../Hook/useAuth";
@@ -20,11 +20,19 @@ useEffect(()=>{
   getData()
 }, [user])
 
-const getData = async() =>{
-  const {data} = await axiosSecure(`/beVolunteer`)
+// const getData = async() =>{
+//   const {data} = await axiosSecure(`/beVolunteer`)
   
-  setItem(data)
-}
+//   setItem(data)
+// }
+
+const getData = async () => {
+  const { data } = await axiosSecure(
+    `/beVolunteer/${user?.email}`,
+    
+  );
+  setItem(data);
+};
 
 /*
   console.log(item);
@@ -73,9 +81,6 @@ const getData = async() =>{
   return (
     <section className='container px-4 mx-auto pt-12'>
     <div
-    data-aos="zoom-in"
-    data-aos-duration="500"
-    data-aos-delay="900"
     className="flex items-center gap-x-3">
       <h2 className="text-lg font-medium ">My Volunteer Request Post</h2>
 
@@ -85,9 +90,6 @@ const getData = async() =>{
     </div>
 
     <div
-    data-aos="zoom-in"
-    data-aos-duration="500"
-    data-aos-delay="1100"
     className='flex flex-col mt-6'>
         <div className='-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8'>
           <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>

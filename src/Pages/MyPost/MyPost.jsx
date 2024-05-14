@@ -80,9 +80,6 @@ const MyPost = () => {
         <title>Volunteer Link | MANAGE MY POST</title>
       </Helmet>
       <div 
-      data-aos="zoom-in"
-      data-aos-duration="500"
-      data-aos-delay="500"
       className="flex items-center gap-x-3">
         <h2 className="text-lg font-medium ">My Posted Jobs</h2>
 
@@ -93,9 +90,6 @@ const MyPost = () => {
 
       <div className="flex flex-col mt-6">
         <div
-        data-aos="zoom-in"
-        data-aos-duration="500"
-        data-aos-delay="700"
         className="relative  overflow-x-auto sm:-mx-6 lg:-mx-8 rounded-2xl">
         <div
           className="absolute -z-10 inset-0 bg-cover bg-center blur-[2px] "

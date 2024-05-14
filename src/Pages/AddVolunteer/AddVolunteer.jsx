@@ -4,10 +4,12 @@ import useAuth from "../../Hook/useAuth";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddVolunteer = () => {
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const handleAddVolunteer = (event) => {
     event.preventDefault();
@@ -56,6 +58,7 @@ const AddVolunteer = () => {
           });
         }
       });
+      navigate("/myPost");
   };
 
   return (
