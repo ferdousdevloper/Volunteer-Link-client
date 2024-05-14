@@ -40,7 +40,14 @@ const Team = () => {
                 />
               </a>
             </div>
-            
+            <div className="text-center">
+              <p className="text-2xl">Eric</p>
+              <p className="text-xl font-light">Developer</p>
+              <p className="max-w-xs py-4 font-light text-gray-500 text-md dark:text-gray-400">
+                Passionate volunteer advocate committed to community service and
+                social impact.
+              </p>
+            </div>
             <div className="flex items-center justify-between pt-8 mx-auto text-gray-500 border-t border-gray-200 w-44">
               <a href="#">
                 <svg
