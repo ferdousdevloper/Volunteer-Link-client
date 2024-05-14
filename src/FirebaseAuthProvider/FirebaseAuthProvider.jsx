@@ -59,18 +59,19 @@ const FirebaseAuthProvider = ({ children }) => {
   //logout
   const logout = async () => {
     setUser(null);
-    const { data } = await axios(`${import.meta.env.VITE_API_URL}/logout`, {
+    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/logout`,{}, {
       withCredentials: true,
     })
     console.log(data)
-    signOut(auth);
+    return signOut(auth);
   };
 
   // observer
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
       setLoading(false); // Set loading to false regardless of user existence
+      
     });
     return () => unsubscribe();
   }, []);

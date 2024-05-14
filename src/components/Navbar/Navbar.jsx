@@ -22,6 +22,11 @@ const Navbar = () => {
   console.log(theme);
 
   const { logout, user } = useAuth();
+
+  const handleLogOut =()=>{
+   //document.cookie = "token"+'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    logout()
+  }
   //console.log(user);
 
   const navLink = (
@@ -217,7 +222,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <button
-                    onClick={logout}
+                    onClick={handleLogOut}
                     className="btn btn-sm btn-error text-white"
                   >
                     Logout
