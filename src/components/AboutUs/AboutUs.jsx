@@ -673,15 +673,7 @@ const AboutUs = () => {
                 className="mb-8 text-base text-body-color dark:text-dark-6">
                 Backed by a dedicated team committed to fostering a culture of service and social responsibility, we are driven by our mission to create a world where everyone has the opportunity to give back and create lasting change. Join us on this journey towards building stronger, more vibrant communities together.
                 </p>
-                <Link
-                data-aos="fade-up"
-                data-aos-duration="500"
-                data-aos-delay="1600"
-                  to='/needVolunteer'
-                  className="inline-flex items-center justify-center py-3 text-base font-medium text-center text-white border border-transparent rounded-md px-7 bg-primary hover:bg-opacity-90"
-                >
-                  Get Started
-                </Link>
+                
               </div>
             </div>
           </div>
