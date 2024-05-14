@@ -145,7 +145,7 @@ const getData = async () => {
                   </tr>
                 </thead>
                 <tbody className='divide-y divide-gray-200 '>
-                  {item.length === 0? <img className="h-80 mx-auto" src={empty1}/> : item.map(i => (
+                  {item.length === 0? <img className="h-80 min-w-[300px] mx-auto" src={empty1}/> : item.map(i => (
                     <tr key={i._id}>
                       <td className='px-4 py-4 text-sm text-gray-500  whitespace-nowrap'>
                         {i.post_title}

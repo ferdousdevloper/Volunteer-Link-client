@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
-    <div>
-      <section className="overflow-hidden pb-12 lg:pt-[120px] lg:pb-[90px]">
+    <div className="md:container md:mx-auto mx-5">
+      <section className="overflow-hidden pb-12 lg:pt-[120px] lg:pb-[90px] ">
       <h1
       data-aos="fade-up"
       data-aos-duration="500"

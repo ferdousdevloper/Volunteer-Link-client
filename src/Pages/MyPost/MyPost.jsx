@@ -152,7 +152,7 @@ const MyPost = () => {
                 <tbody className="divide-y divide-gray-200 ">
                   
                   {item.length === 0 ? (
-                    <img className="h-80 mx-auto" src={empty1} />
+                    <img className="h-80 min-w-[300px] mx-auto" src={empty1} />
                   ) : (
                     item.map((i) => (
                       <tr key={i._id}>
