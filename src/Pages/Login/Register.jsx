@@ -80,7 +80,7 @@ const Register = () => {
       
       
       const user = {email};
-        fetch('http://localhost:5000/user', {
+        fetch('volunteer-link-server.vercel.app/user', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
