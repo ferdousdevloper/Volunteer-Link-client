@@ -12,6 +12,7 @@ const NeedVolunteerPage = () => {
   const [search, setSearch] = useState("");
   const [searchText, setSearchText] = useState("");
   const [isLayoutOne, setIsLayoutOne] = useState(true);
+  const [displayCategory, setDisplayCategory] = useState(item);
   //const needVolunteerCards = useLoaderData();
 
   useEffect(() => {
@@ -20,6 +21,7 @@ const NeedVolunteerPage = () => {
         `${import.meta.env.VITE_API_URL}/volunteer?search=${search}`
       );
       setItem(data);
+      setDisplayCategory(data);
     };
     getData();
   }, [search]);
@@ -48,6 +50,33 @@ const NeedVolunteerPage = () => {
     setIsLayoutOne((prevState) => !prevState);
   };
   console.log(isLayoutOne);
+
+  //new feature add---------------------------------------
+  const handleCategory = (filter) => {
+    if (filter === "education") {
+      const educationCategory = item.filter(
+        (category) => category.category === "education"
+      );
+      setDisplayCategory(educationCategory);
+    } else if (filter === "healthcare") {
+      const healthCareCategory = item.filter(
+        (category) => category.category === "healthcare"
+      );
+      setDisplayCategory(healthCareCategory);
+    } else if (filter === "social service") {
+      const socialCareCategory = item.filter(
+        (category) => category.category === "social service"
+      );
+      setDisplayCategory(socialCareCategory);
+    } else if (filter === "animal welfare") {
+      const animalCareCategory = item.filter(
+        (category) => category.category === "animal welfare"
+      );
+      setDisplayCategory(animalCareCategory);
+    }
+  };
+  console.log(displayCategory);
+
   return (
     <div className="text-center mb-10 md:container md:mx-auto mx-5">
       <Helmet>
@@ -109,27 +138,54 @@ const NeedVolunteerPage = () => {
           Search
         </button>
       </form>
-      <div
-        data-aos="zoom-in"
-        data-aos-duration="500"
-        data-aos-delay="1100"
-        className="flex items-center gap-4 justify-end mb-8 mr-10"
-      >
-        <p className="font-bold">View Grid</p>
-        <MdOutlineGridView className="text-2xl text-blue-500" />
-        <input
-          onChange={handleToggleClick}
-          type="checkbox"
-          className="toggle"
-        />
-        <MdOutlineViewHeadline className="text-2xl text-blue-500" />
-        <p className="font-bold">View List</p>
+      <div className="flex justify-between items-center mb-8 ">
+        <div className="dropdown">
+          <div tabIndex={0} role="button" className="btn m-1">
+          <p className="font-bold">Filter by category</p>
+          </div>
+          <ul
+            tabIndex={0}
+            className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li onClick={()=>handleCategory('education')}>
+              <a>Education</a>
+            </li>
+            <li onClick={()=>handleCategory('healthcare')}>
+              <a>Healthcare</a>
+            </li>
+            <li onClick={()=>handleCategory('social service')}>
+              <a>Social service</a>
+            </li>
+            <li onClick={()=>handleCategory('animal welfare')}>
+              <a>Animal welfare</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="500"
+            data-aos-delay="1100"
+            className="flex items-center gap-4 justify-end mr-10"
+          >
+            <p className="font-bold">View Grid</p>
+            <MdOutlineGridView className="text-2xl text-blue-500" />
+            <input
+              onChange={handleToggleClick}
+              type="checkbox"
+              className="toggle"
+            />
+            <MdOutlineViewHeadline className="text-2xl text-blue-500" />
+            <p className="font-bold">View List</p>
+          </div>
+        </div>
       </div>
+
       {isLayoutOne ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 container mx-auto">
           {
             // eslint-disable-next-line react/no-unknown-property
-            item.map((i) => (
+            displayCategory.map((i) => (
               <div
                 data-aos="fade-up"
                 data-aos-duration="500"
@@ -188,11 +244,12 @@ const NeedVolunteerPage = () => {
           }
         </div>
       ) : (
-        <div 
-        data-aos="zoom-in"
-       data-aos-duration="500"
-       data-aos-delay="700"
-        className="overflow-x-auto border rounded-2xl shadow-2xl">
+        <div
+          data-aos="zoom-in"
+          data-aos-duration="500"
+          data-aos-delay="700"
+          className="overflow-x-auto border rounded-2xl shadow-2xl"
+        >
           <table className="table ">
             {/* head */}
             <thead>
@@ -208,8 +265,12 @@ const NeedVolunteerPage = () => {
             <tbody>
               {
                 // eslint-disable-next-line react/no-unknown-property
-                item.map((i) => (
-                  <tr key={i._id} i={i} className="shadow-2xl hover:scale-[101%] ease-in duration-300">
+                displayCategory.map((i) => (
+                  <tr
+                    key={i._id}
+                    i={i}
+                    className="shadow-2xl hover:scale-[101%] ease-in duration-300"
+                  >
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
@@ -258,7 +319,7 @@ const NeedVolunteerPage = () => {
                 <th>Category</th>
                 <th>Volunteers Need</th>
                 <th>Deadline</th>
-                
+
                 <th></th>
               </tr>
             </tfoot>
