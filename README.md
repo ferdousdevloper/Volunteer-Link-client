@@ -46,3 +46,5 @@ ________________________________________________________________________________
 - Request Submission: Users can send requests to volunteer for specific opportunities posted by others. Each request is recorded and stored in the "My Requests" section, providing users with a history of their volunteering engagements.
 
 - Request Management (Remove): Users can manage their submitted requests by removing them from the list if desired, allowing for flexibility and organization in their volunteering activities.
+
+- Filter Functionality : A user can filter and view posts categorized into four distinct areas: Education, Healthcare, Social Service, and Animal Welfare. This categorization allows for a streamlined and organized display of content based on user preferences.
